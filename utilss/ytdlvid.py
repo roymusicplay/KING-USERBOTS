@@ -12,7 +12,7 @@ from kingbot import Adminsettings , vr , kingbot , setbot
 @kingbot.on_message(filters.command("vid" , vr.get("HNDLR")) & filters.user(Adminsettings))
 async def yt_vid(client, message):
     input_st = message.text
-    input_str= input_st.split(" ", 1)[0]
+    input_str= input_st.split(" ", 1)[1]
     pablo = await message.edit_text("`Processing...`")
     if not input_str:
         await message.edit_text(
