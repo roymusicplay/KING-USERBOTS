@@ -1,4 +1,4 @@
-# py-kingbot
+# kingbot userbot
 ## A stable userbot base library , based on Pyrogram
 
 
@@ -16,3 +16,6 @@ Made with 💕 by [@TeamDevilCoder](https://t.me/devilcodes_network).
 
 # Credits
 * [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
+* Aryan -: A newbie but full of talent
+* Sammy -: Source of idea
+* Abhishek -: A humble thanks to you for the graphics
