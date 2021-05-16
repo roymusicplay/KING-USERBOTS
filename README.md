@@ -3,19 +3,13 @@
 
 
 ### Deploying To Heroku ⚙
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/edguru/kinguser)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/edguru/king_userbot)
 
 ## Installation 
 'pip install py-kingbot'
 
-
-## Usage
-=> Create folders named `plugins`, `addons`, `assistant` and `resources`.<br/>
-=> Add your plugins in the `plugins` folder and others accordingly.<br/>
-=> Create a `.env` file with `API_ID`, `API_HASH`, `SESSION`, 
-`BOT_TOKEN`, `BOT_USERNAME`, `REDIS_URI`, `REDIS_PASSWORD` & 
-`LOG_CHANNEL` as mandatory environment variables. 
-=> Run `python -m kingbot` to start the bot.<br/>
+##Inspiration 
+I was greatly inspired from some awesome projects like ultroid and nana. Both are milestone in their respective ways. This userbot is just a try to to create something good and honour the previous work done by some awesome people. I want to dedicate my work to one of my ideals pokurt. Have a great time with this bot and other developer are heartly invited to contribute
 
 
 Made with 💕 by [@TeamDevilCoder](https://t.me/devilcodes_network).
