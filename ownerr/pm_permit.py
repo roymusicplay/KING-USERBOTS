@@ -28,7 +28,10 @@ async def pm_chker(_ , message):
                 ])
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
     else:
-      
+      if gw==3:
+        message.reply_text("You have crossed your warns so die")
+        kingbot.block_user(message.from_user.id)
+        blockuser(message.from_user.id)
       sb= await setbot.get_me()
       un= sb.username
       result= await kingbot.get_inline_bot_results(un , f"pmsg_{message.from_user.id}")
@@ -107,13 +110,13 @@ async def appblk(_ , cbq):
     mth= dt.split("_",1)[0]
     idd= int(dt.split("_",1)[1])
     if mth == "aprv":
-      await givepermit(idd)
+      givepermit(idd)
       await setbot.edit_inline_text(cbq.inline_message_id ,"The user has been approved")
       await kingbot.send_message(idd , "Welcome!! my master has remotely approved you🥳🥳🥳")
       cbq.answer()
       return
     if mtb == "decine":
-       await blockuser(idd)
+       blockuser(idd)
        await setbot.edit_inline_text(cbq.inline_message_id, "The user has been blocked")
        await kingbot.send_message(idd,"Sed!! My master decided to send you to hell☠️☠️")
        await kingbot.block_user(idd)
@@ -150,21 +153,22 @@ async def refet(_, message):
   if message.chat.id in Adminsettings:
      await message.edit_text("The user is same as me how can I do such tricks here")
   else:
+    givepermit(message.chat.id)
     await message.edit_text("the user has been approved!!")
-    await givepermit(message.chat.id)
+    
      
-@kingbot.on_message(filters.command("app", vr.get("HNDLR")) & filters.user(Adminsettings) & filters.private)
+@kingbot.on_message(filters.command("dapp", vr.get("HNDLR")) & filters.user(Adminsettings) & filters.private)
 async def refet(_, message):
   if message.chat.id in Adminsettings:
      await message.edit_text("The user is same as me how can I do such tricks here")
   else:
     await message.edit_text("the user has been blocked!!")
-    await blockuser(message.chat.id)
+    blockuser(message.chat.id)
     await kingbot.block_user(message.chat.id)
     
 @kingbot.on_message(filters.command("allpermitted", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def rfet(_, message):
-  dtt = await allallowed()
+  dtt = allallowed()
   strr ="Following are the users allowed"
   for x in dtt:
     usr= kingbot.get_users(x)
@@ -172,7 +176,7 @@ async def rfet(_, message):
   message.edit_text(strr)
 @kingbot.on_message(filters.command("allblocked", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def rfet(_, message):
-  dtt = await allblocked()
+  dtt = allblocked()
   strr ="Following are the users blocked"
   for x in dtt:
     usr= kingbot.get_users(x)
@@ -180,7 +184,7 @@ async def rfet(_, message):
   message.edit_text(strr)
 @kingbot.on_message(filters.command("nonpermitted", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def rfet(_, message):
-  dtt = await inwarns()
+  dtt = inwarns()
   strr ="Following are the users not allowed"
   for x in dtt:
     usr= kingbot.get_users(x)
