@@ -30,8 +30,8 @@ async def pm_chker(_ , message):
     else:
       sb= await setbot.get_me()
       un= sb.username
-      result= kingbot.get_inline_bot_results(un , f"pmsg_{message.user.id}")
-      mg = kingbot.send_inline_bot_result(message.chat.id , result.query_id , result.results[0].id)
+      result= await kingbot.get_inline_bot_results(un , f"pmsg_{message.from_user.id}")
+      mg = await kingbot.send_inline_bot_result(message.chat.id , result.query_id , result.results[0].id)
 async def infilter(_,__, inline_query):
     if re.match(r"pmsg_", inline_query.query):
         return True
