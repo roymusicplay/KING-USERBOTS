@@ -2,31 +2,31 @@ from kingbot import kingbot, setbot , vr, Adminsettings
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , InlineQuery ,Message, CallbackQuery, InlineQueryResultPhoto, User
 from pyrogram import filters 
 import re
-from sql_helper.permit import givepermit, checkpermit, blockuser, getwarns, allallowed, allblocked, inwarns
+from sql_helper.permit import givepermit, checkpermit, blockuser, getwarns, allallowed, allblocked, inwarns, addwarns
 @kingbot.on_message(~filters.user(Adminsettings) & filters.private & ~filters.bot)
 async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
         return
   else:
-    gw= await getwarns(message.chat.id)
+    gw= getwarns(message.chat.id)
     if isinstance(gw , str):
       sb= await setbot.get_me()
       un= sb.username
-      result= kingbot.get_inline_bot_results(un , f"pmsg_{message.user.id}")
-      mg = kingbot.send_inline_bot_result(message.chat.id , result.query_id , result.results[0].id)
+      result=await kingbot.get_inline_bot_results(un , f"pmsg_{message.from_user.id}")
+      mg = await kingbot.send_inline_bot_result(message.chat.id , result.query_id , result.results[0].id)
       ow=await kingbot.get_me()
-      use= await kingbot.get_users(message.user.id)
+      use= await kingbot.get_users(message.from_user.id)
       keyboard= InlineKeyboardMarkup([  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
                         "Approve",
-                        callback_data=f"aprv_{message.user.id}"
+                        callback_data=f"aprv_{message.from_user.id}"
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Decline",
-                        callback_data=f"decine_{message.user.id}"
+                        callback_data=f"decine_{message.from_user.id}"
                     ),
                 ])
-      setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
+      await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
     else:
       sb= await setbot.get_me()
       un= sb.username
@@ -41,8 +41,8 @@ innfi = filters.create(infilter)
 async def pmsg_gen(_ , inline_query):
   st= inline_query.query
   id = int(st.split("_",1)[1])
-  gww = await getwarns(id)
-  await addwarns(id)
+  gww = getwarns(id)
+  addwarns(id)
   keboard= InlineKeyboardMarkup(
                   [  [
                         InlineKeyboardButton(
@@ -93,7 +93,7 @@ async def appblk(_ , cbq):
     mth= dt.split("_",1)[0]
     idd= int(dt.split("_",1)[1])
     if mth == "aprv":
-      await givepermit(idd)
+      givepermit(idd)
       await setbot.edit_inline_text(cbq.inline_message_id ,"The user has been approved")
       await kingbot.send_message(idd , "Welcome!! my master has remotely approved you🥳🥳🥳")
       cbq.answer()
