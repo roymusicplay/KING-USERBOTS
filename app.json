@@ -26,6 +26,10 @@
             "description": "Your Telegram id .Beware not username",
             "value": ""
         },
+        "DATABASE_URL": {
+            "description": "A sql database url you may use elephant sql",
+            "value": ""
+        },        
         "BOT_TOKEN": {
             "description": "Make a bot from @BotFather, and enter it's api token here.",
             "value": ""
@@ -61,12 +65,6 @@
             "value": ""
         }
     },
-    "addons": [{
-    "plan": "heroku-postgresql",
-    "options": {
-      "version": "12"
-    }
-  }],
     "formation": {
         "worker": {
             "quantity": 1,
