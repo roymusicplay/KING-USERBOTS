@@ -69,7 +69,7 @@ async def pmsg_gen(_ , inline_query):
   if isinstance(gww, str):
     cptn= f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only 1 warning"
   else:
-    if gww==3 
+    if gww==3:
       kingbot.block_user(id)
       return
     cptn=f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only {gww} warning"
