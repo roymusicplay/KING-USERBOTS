@@ -69,6 +69,9 @@ async def pmsg_gen(_ , inline_query):
   if isinstance(gww, str):
     cptn= f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only 1 warning"
   else:
+    if gww==3 
+      kingbot.block_user(id)
+      return
     cptn=f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only {gww} warning"
   await inline_query.answer(
         results=[
@@ -93,7 +96,7 @@ async def appblk(_ , cbq):
     mth= dt.split("_",1)[0]
     idd= int(dt.split("_",1)[1])
     if mth == "aprv":
-      givepermit(idd)
+      await givepermit(idd)
       await setbot.edit_inline_text(cbq.inline_message_id ,"The user has been approved")
       await kingbot.send_message(idd , "Welcome!! my master has remotely approved you🥳🥳🥳")
       cbq.answer()
@@ -115,20 +118,20 @@ async def fny(_, cbq):
     idd= cbq.from_user
     mth= cbq.data
     if mth =="re_q1":
-      await cbq.edit_inline_text(cbq.inline_message_id,"Your!! Request has been registered")
+      await setbot.edit_inline_text(cbq.inline_message_id,"Your!! Request has been registered")
       await cbq.answer()
       return
     if mth =="re_q2":
-      await cbq.edit_inline_text(cbq.inline_message_id, "My master is very kind!!!\n he will surely help you")
+      await setbot.edit_inline_text(cbq.inline_message_id, "My master is very kind!!!\n he will surely help you")
       await cbq.answer()
       return
     if mth =="re_q3":
-      await cbq.edit_inline_text(cbq.inline_message_id,"Do not dare to do that\n Blocking you")
+      await setbot.edit_inline_text(cbq.inline_message_id,"Do not dare to do that\n Blocking you")
       await kingbot.block_user(idd)
       await cbq.answer()
       return
     if mth =="re_q4":
-      await cbq.edit_inline_text(cbq.inline_message_id,"Nice to meet you. Let me notify the Master")
+      await setbot.edit_inline_text(cbq.inline_message_id,"Nice to meet you. Let me notify the Master")
       await cbq.answer()
       return
 @kingbot.on_message(filters.command("app", vr.get("HNDLR")) & filters.user(Adminsettings) & filters.private)
