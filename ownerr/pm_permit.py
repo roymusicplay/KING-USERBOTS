@@ -28,10 +28,24 @@ async def pm_chker(_ , message):
                 ])
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
     else:
+      
       sb= await setbot.get_me()
       un= sb.username
       result= await kingbot.get_inline_bot_results(un , f"pmsg_{message.from_user.id}")
       mg = await kingbot.send_inline_bot_result(message.chat.id , result.query_id , result.results[0].id)
+      use= await kingbot.get_users(message.from_user.id)
+      keyboard= InlineKeyboardMarkup([  # First row
+                    InlineKeyboardButton(  # Generates a callback query when pressed
+                        "Approve",
+                        callback_data=f"aprv_{message.from_user.id}"
+                    ),
+                    InlineKeyboardButton(  # Opens a web URL
+                        "Decline",
+                        callback_data=f"decine_{message.from_user.id}"
+                    ),
+                ])
+      await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
+   
 async def infilter(_,__, inline_query):
     if re.match(r"pmsg_", inline_query.query):
         return True
@@ -69,9 +83,6 @@ async def pmsg_gen(_ , inline_query):
   if isinstance(gww, str):
     cptn= f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only 1 warning"
   else:
-    if gww==3:
-      kingbot.block_user(id)
-      return
     cptn=f"You are accessing Pm permit of king userbot\n My master is currently busy so choose one of the below options and don't spam\n You have only {gww} warning"
   await inline_query.answer(
         results=[
