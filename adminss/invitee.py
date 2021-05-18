@@ -10,7 +10,7 @@ __**This command helps you to invite members in a chat**__
 """
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("invite", vr.get("HNDLR")))
 async def inviteee(client, message):
- mg = await message.edit_text("`Adding Users!`")
+    mg = await message.edit_text("`Adding Users!`")
     user_s_to_add = message.text.split(" ",1)[1]
     if not user_s_to_add:
         await mg.edit("`Give Me Users To Add! Check Help Menu For More Info!`")
