@@ -337,13 +337,4 @@ async def play(client: Client, message_: Message):
         caption=f"Playing Your song Via king music bot.",
          ) 
         vcbot.join_group_call(message_.chat.id, file_path)
-@vcbot.on_stream_end()
-def on_stream_end(chat_id: int) -> None:
-    task_done(chat_id)
 
-    if is_empty(chat_id):
-        vcbot.leave_group_call(chat_id)
-    else:
-        vcbot.change_stream(
-            chat_id, sira.get(chat_id)["file_path"]
-        )
