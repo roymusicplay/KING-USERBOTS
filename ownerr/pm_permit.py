@@ -3,6 +3,16 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , InlineQu
 from pyrogram import filters 
 import re
 from sql_helper.permit import givepermit, checkpermit, blockuser, getwarns, allallowed, allblocked, inwarns, addwarns
+__MODULE__ = "PM PERMIT"
+__HELP__ = """
+__**This command helps you to approve someone**__
+──「 **Usage** 」──
+-> `app`
+__**This command helps you to disapprove someone**__
+──「 **Usage** 」──
+-> `dapp`
+"""
+
 @kingbot.on_message(~filters.user(Adminsettings) & filters.private & ~filters.bot)
 async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
