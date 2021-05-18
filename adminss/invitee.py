@@ -4,8 +4,8 @@ from kingbot import kingbot, setbot , vr , Adminsettings
 import asyncio
 __MODULE__ = "Spam"
 __HELP__ = """
-->`spam`
-__**This command helps you to spam in a chat use the format spam times text**__
+->`invite`
+__**This command helps you to invite members in a chat**__
 ──「 **Usage** 」──
 """
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("invite", vr.get("HNDLR")))
