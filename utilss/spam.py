@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from kingbot import kingbot, setbot , vr , Adminsettings
-
+import asyncio
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("spam", vr.get("HNDLR")))
 async def spam(client, message):
     await message.delete()
