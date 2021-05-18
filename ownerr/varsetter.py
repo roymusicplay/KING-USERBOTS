@@ -24,4 +24,8 @@ async def varistr(_, message):
                      pass
         if keyy== "VC_API_ID":
               keyy = int(keyy)
-        vr.set(keyy , valuee)
+        try:
+           vr.set(keyy , valuee)
+           message.edit_text("The var has been set\n Restart the app to enjoy")
+        except Exception as err:
+           message.edit_text(f"Encountered a error:{str(err)}")
