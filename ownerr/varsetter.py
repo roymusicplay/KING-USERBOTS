@@ -13,9 +13,11 @@ Vari=["HNDLR","VC_SESSION", "VC_API_ID" ,"VC_API_HASH"]
 async def varistr(_, message):
   msg_txt=message.text
   if " " in msg_txt:
-        content=msg_txt[msg_txt.index(" ")+1:len(msg_txt)]
+        await message.edit_text("getting vars from message")
+        content=msg_txt.split(" " ,1)[1]
         keyy= content.split(" ", 1)[0]
         valuee = content.split(" ",1)[1]
+        await message.edit_text("separating the vars")
         if keyy == "VC_SESSION":
              if vr.get("VC_API_ID") is None & vr.get("VC_API_HASH") is None:
                      await message.edit_text("First set `VC_API_HASH` and `VC_API_ID` to use music. Then set the VC_SESSION")
