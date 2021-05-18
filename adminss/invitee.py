@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from kingbot import kingbot, setbot , vr , Adminsettings
 import asyncio
-__MODULE__ = "Spam"
+__MODULE__ = "invite"
 __HELP__ = """
 ->`invite`
 __**This command helps you to invite members in a chat**__
