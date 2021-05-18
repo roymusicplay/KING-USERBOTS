@@ -3,7 +3,6 @@ async-lru==1.0.2
 async-timeout==3.0.1
 asyncio==3.4.3
 attrs==21.2.0
-gpytranslate==1.0.2
 backports.functools-lru-cache==1.6.4
 beautifulsoup4==4.9.1
 bidict==0.21.2
