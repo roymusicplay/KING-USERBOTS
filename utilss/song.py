@@ -11,7 +11,12 @@ from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message
 
-
+__MODULE__ = "Song"
+__HELP__ = """
+__**This command helps you to download and send songs to a chat**__
+──「 **Usage** 」──
+-> `song name`
+"""
 def yt_search(song):
     videosSearch = VideosSearch(song, limit=1)
     result = videosSearch.result()
