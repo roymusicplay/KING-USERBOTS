@@ -18,14 +18,14 @@ async def varistr(_, message):
         valuee = content.split(" ",1)[1]
         if keyy == "VC_SESSION":
              if vr.get("VC_API_ID") is None & vr.get("VC_API_HASH") is None:
-                     message.edit_text("First set `VC_API_HASH` and `VC_API_ID` to use music. Then set the VC_SESSION")
+                     await message.edit_text("First set `VC_API_HASH` and `VC_API_ID` to use music. Then set the VC_SESSION")
                      return
              else:
                      pass
         if keyy== "VC_API_ID":
               keyy = int(valuee)
         try:
-           vr.set(keyy , valuee)
-           message.edit_text("The var has been set\n Restart the app to enjoy")
+           await vr.set(keyy , valuee)
+           await message.edit_text("The var has been set\n Restart the app to enjoy")
         except Exception as err:
-           message.edit_text(f"Encountered a error:{str(err)}")
+           await message.edit_text(f"Encountered a error:{str(err)}")
