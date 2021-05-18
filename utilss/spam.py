@@ -7,15 +7,16 @@ async def spam(client, message):
     await message.delete()
     times = message.command[1]
     to_spam = " ".join(message.command[2:])
+    i = 0
     if message.chat.type in ["supergroup", "group"]:
-        for _ in range(int(times)):
+        for i in range(int(times)):
             await client.send_message(
-                message.chat.id, to_spam, reply_to_message_id=ReplyCheck(message)
+                message.chat.id, to_spam
             )
             await asyncio.sleep(0.20)
 
     if message.chat.type == "private":
-        for _ in range(int(times)):
+        for i in range(int(times)):
             await client.send_message(message.chat.id, to_spam)
             await asyncio.sleep(0.20)
 
@@ -29,9 +30,10 @@ async def spam_stick(client, message):
         await message.edit_text(text="**reply to a sticker with amount you want to spam**")
         return
     else:
+        i=0
         times = message.command[1]
         if message.chat.type in ["supergroup", "group"]:
-            for _ in range(int(times)):
+            for i in range(int(times)):
                 sticker=message.reply_to_message.sticker.file_id
                 await client.send_sticker(
                     message.chat.id,
@@ -41,7 +43,7 @@ async def spam_stick(client, message):
                 await asyncio.sleep(0.20)
 
         if message.chat.type == "private":
-            for _ in range(int(times)):
+            for i in range(int(times)):
                 sticker=message.reply_to_message.sticker.file_id
                 await client.send_sticker(
                     message.chat.id, sticker
