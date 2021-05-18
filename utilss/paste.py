@@ -27,13 +27,7 @@ async def paste(_,message):
                 key = json.loads(req.content)["result"]["key"]
                 await message.reply(f"Nekofied to https://nekobin.com/{key}")
             else:
-                await message.reply("Can only paste text LOL !")
-        else:
-            await message.reply("Give me something to paste !")    
-   if not msg_txt:
-        if not message.reply_to_message:
-            await message.edit_text("`Reply To File / Give Me Text To Paste!`")
-            return
+                await message.reply("Can only paste text LOL !")    
         if not message.reply_to_message.text:
             file = await message.reply_to_message.download()
             m_list = open(file, "r").read()
