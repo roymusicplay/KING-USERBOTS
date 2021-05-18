@@ -18,12 +18,6 @@ async def varistr(_, message):
         keyy= content.split(" ", 1)[0]
         valuee = content.split(" ",1)[1]
         await message.edit_text("separating the vars")
-        if keyy == "VC_SESSION":
-             if vr.get("VC_API_ID") is None & vr.get("VC_API_HASH") is None:
-                     await message.edit_text("First set `VC_API_HASH` and `VC_API_ID` to use music. Then set the VC_SESSION")
-                     return
-             else:
-                     pass
         if keyy== "VC_API_ID":
               keyy = int(valuee)
         try:
