@@ -11,7 +11,7 @@ __**This command helps you to instantly unban a user in the chat**__
 """
 
 @kingbot.on_message(filters.group & filters.command("unban",vr.get("HNDLR")) & filters.user(Adminsettings))  
-def member_unban(_ , message):
+async def member_unban(_ , message):
     msg_id=message.message_id
     chat_msg=message.text
     username=None
@@ -27,15 +27,15 @@ def member_unban(_ , message):
     can_ban=kingbot.get_chat_member(chat_id , "me").can_restrict_members
     user_info=kingbot.get_users(username)
     if(can_ban):      
-        kingbot.unban_chat_member(chat_id , username)
+        await kingbot.unban_chat_member(chat_id , username)
         if(user_info.username):
             usercontact=user_info.username
             reply_string="@"+usercontact+" has been picked up from hell 😈"
-            kingbot.edit_message_text(chat_id , msg_id , reply_string)
+            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
         else:
             usercontact=user_info.first_name
             reply_string=usercontact+" has been picked up from 😈"
-            kingbot.edit_message_text(chat_id , msg_id , reply_string)
+            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
     else:
         reply_string="Noob,you can't unban members 😂 !"
-        kingbot.edit_message_text(chat_id , msg_id , reply_string )
+        await kingbot.edit_message_text(chat_id , msg_id , reply_string )
