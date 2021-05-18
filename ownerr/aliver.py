@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from kingbot import setbot, Adminsettings, kingbot, START_TIME , vr
+from kingbot import setbot, Adminsettings, kingbot, START_TIME , vr, vcbot
 from datetime import datetime
 import time
 __MODULE__ = "alive"
@@ -25,3 +25,5 @@ async def gooe_search(client, message):
     reply_msg += f"( ͡° ͜ʖ ͡°)Servers functioning- normal♡´･ᴗ･`♡"
     await client.send_photo(message.chat.id , Alive_pic , reply_msg)
     await message.delete()
+    if vcbot is not None:
+        vcbot.send_message(message.chat.id, "Voice player alive")
