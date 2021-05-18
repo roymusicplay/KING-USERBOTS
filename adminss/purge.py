@@ -11,24 +11,41 @@ __**This command helps you to delete all messages from a replied message in the 
 """
 
 @kingbot.on_message(filters.command("purge",vr.get("HNDLR")) & filters.user(Adminsettings))  
-def purge(_, message):
-    chat_id=message.chat.id
-    if message.reply_to_message:
-        if message.chat.type == "group":
-            reply_msg_id=message.reply_to_message.message_id
-            current_msg_id=message.message_id
-            can_delete=kingbot.get_chat_member(chat_id , "me").can_delete_messages
-            if can_delete:
-                for msg_id in range(reply_msg_id , current_msg_id ,1):
-                    client.delete_messages(chat_id , msg_id)
-                message.reply("All messages purged , no hint left !")
-            else:
-                message.reply("Mistakes can't be deleted by everyone !")
-        else:
-            reply_msg_id=message.reply_to_message.message_id
-            current_msg_id=message.message_id
-            for msg_id in range(reply_msg_id , current_msg_id ,1):
-                    kingbot.delete_messages(chat_id , msg_id)
-            message.reply("All messages purged , no hint left !")
-    else:
-        message.reply("Shall I delete your existence ?😌")
+def purge(client, message):
+    start_time = time.time()
+    message_ids = []
+    purge_len = 0
+    event = await message.edit_text("`Starting To Purge Messages!`")
+    me_m = client.me
+    if message.chat.type in ["supergroup", "channel"]:
+        me_ = await message.chat.get_member(int(me_m.id))
+        if not me_.can_delete_messages:
+            await event.edit("`I Need Delete Permission To Do This!`")
+            return
+    if not message.reply_to_message:
+        await event.edit("`Reply To Message To Purge!`")
+        return
+    async for msg in client.iter_history(
+        chat_id=message.chat.id,
+        offset_id=message.reply_to_message.message_id,
+        reverse=True,
+    ):
+        if msg.message_id != message.message_id:
+            purge_len += 1
+            message_ids.append(msg.message_id)
+            if len(message_ids) >= 100:
+                await client.delete_messages(
+                    chat_id=message.chat.id, message_ids=message_ids, revoke=True
+                )
+                message_ids.clear()
+    if message_ids:
+        await client.delete_messages(
+            chat_id=message.chat.id, message_ids=message_ids, revoke=True
+        )
+    end_time = time.time()
+    u_time = round(end_time - start_time)
+    await event.edit(
+        f"**>> Fast Purge Done!** \n**>> Total Message Purged :** `{purge_len}` \n**>> Time Taken :** `{u_time}`",
+    )
+    await asyncio.sleep(3)
+    await event.delete()
