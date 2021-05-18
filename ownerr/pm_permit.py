@@ -8,6 +8,7 @@ async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
         return
   else:
+    addwarns(message.chat.id)
     gw= getwarns(message.chat.id)
     if isinstance(gw , str):
       sb= await setbot.get_me()
@@ -61,7 +62,6 @@ async def pmsg_gen(_ , inline_query):
   st= inline_query.query
   id = int(st.split("_",1)[1])
   gww = getwarns(id)
-  addwarns(id)
   keboard= InlineKeyboardMarkup(
                   [  [
                         InlineKeyboardButton(
