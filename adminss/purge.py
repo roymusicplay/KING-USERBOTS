@@ -11,7 +11,7 @@ __**This command helps you to delete all messages from a replied message in the 
 """
 
 @kingbot.on_message(filters.command("purge",vr.get("HNDLR")) & filters.user(Adminsettings))  
-def purge(client, message):
+async def purge(client, message):
     start_time = time.time()
     message_ids = []
     purge_len = 0
