@@ -2,6 +2,14 @@ from pyrogram import filters
 from pyrogram.types import Message
 from kingbot import kingbot, setbot , vr , Adminsettings
 import asyncio
+__MODULE__ = "Spam"
+__HELP__ = """
+->`spam`
+__**This command helps you to spam in a chat use the format spam times text**__
+──「 **Usage** 」──
+-> `spamstk`
+__**This command is used to spam a sticker in group just reply to the sticker with spam times**__
+"""
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("spam", vr.get("HNDLR")))
 async def spam(client, message):
     await message.delete()
