@@ -48,8 +48,9 @@ class AioHttp:
 async def song(client, message):
     chat_id = message.chat.id
     user_id = message.from_user["id"]
-    args = get_arg(message) + " " + "song"
-    if args.startswith(" "):
+    txt = message.text
+    arg= txt.split(" ",1)[1]
+    if arg is None:
         await message.reply("Enter a song name. Check /help")
         return ""
     status = await message.reply("Processing...")
