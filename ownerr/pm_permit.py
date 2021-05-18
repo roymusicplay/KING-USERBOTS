@@ -29,8 +29,8 @@ async def pm_chker(_ , message):
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
     else:
       if gw==3:
-        message.reply_text("You have crossed your warns so die")
-        kingbot.block_user(message.from_user.id)
+        await message.reply_text("You have crossed your warns so die")
+        await kingbot.block_user(message.from_user.id)
         blockuser(message.from_user.id)
       sb= await setbot.get_me()
       un= sb.username
@@ -173,7 +173,7 @@ async def rfet(_, message):
   for x in dtt:
     usr= kingbot.get_users(x)
     strr+=f"\n {usr.mention()}"
-  message.edit_text(strr)
+  await message.edit_text(strr)
 @kingbot.on_message(filters.command("allblocked", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def rfet(_, message):
   dtt = allblocked()
@@ -181,7 +181,7 @@ async def rfet(_, message):
   for x in dtt:
     usr= kingbot.get_users(x)
     strr+=f"\n {usr.mention()}"
-  message.edit_text(strr)
+  await message.edit_text(strr)
 @kingbot.on_message(filters.command("nonpermitted", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def rfet(_, message):
   dtt = inwarns()
@@ -189,4 +189,4 @@ async def rfet(_, message):
   for x in dtt:
     usr= kingbot.get_users(x)
     strr+=f"\n {usr.mention()}"
-  message.edit_text(strr)
+  await message.edit_text(strr)
