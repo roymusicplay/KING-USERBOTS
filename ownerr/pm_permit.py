@@ -48,7 +48,7 @@ async def pm_chker(_ , message):
                         callback_data=f"decine_{message.from_user.id}"
                     ),
                 ])
-      ow=kingbot.get_me()
+      ow=await kingbot.get_me()
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
    
 async def infilter(_,__, inline_query):
