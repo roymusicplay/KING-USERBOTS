@@ -11,10 +11,10 @@ __**This command helps you to unlock chat for non-admins in the chat**__
 """
 
 @kingbot.on_message(filters.command("unlock",vr.get("HNDLR")) & filters.user(Adminsettings))
-def unlock(_, message):
+async def unlock(_, message):
     chat_id=message.chat.id
-    message.reply("Chat has been unlocked !!")
-    kingbot.set_chat_permissions(
+    await message.edit_text("Chat has been unlocked !!")
+    await kingbot.set_chat_permissions(
         chat_id,
         ChatPermissions(
             can_send_messages=True,
@@ -22,4 +22,5 @@ def unlock(_, message):
             can_send_media_messages=True,
             can_send_animations=True
         )
-    )  
+    ) 
+ 
