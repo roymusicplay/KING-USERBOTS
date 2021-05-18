@@ -27,7 +27,7 @@ async def varistr(_, message):
         if keyy== "VC_API_ID":
               keyy = int(valuee)
         try:
-           await vr.set(keyy , valuee)
+           vr.set(keyy , valuee)
            await message.edit_text("The var has been set\n Restart the app to enjoy")
         except Exception as err:
            await message.reply_text("error")
