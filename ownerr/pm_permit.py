@@ -20,11 +20,11 @@ async def pm_chker(_ , message):
       keyboard= InlineKeyboardMarkup([  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
                         "Approve",
-                        callback_data=f"aprv_{message.from_user.id}"
+                        callback_data=f"aprv_{str(message.from_user.id)}"
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Decline",
-                        callback_data=f"decine_{message.from_user.id}"
+                        callback_data=f"decine_{str(message.from_user.id)}"
                     ),
                 ])
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
@@ -42,11 +42,11 @@ async def pm_chker(_ , message):
       keyboard= InlineKeyboardMarkup([  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
                         "Approve",
-                        callback_data=f"aprv_{message.from_user.id}"
+                        callback_data=f"aprv_{str(message.from_user.id)}"
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Decline",
-                        callback_data=f"decine_{message.from_user.id}"
+                        callback_data=f"decine_{str(message.from_user.id)}"
                     ),
                 ])
       ow=await kingbot.get_me()
