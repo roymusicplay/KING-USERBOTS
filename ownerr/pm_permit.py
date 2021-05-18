@@ -32,6 +32,7 @@ async def pm_chker(_ , message):
         await message.reply_text("You have crossed your warns so die")
         await kingbot.block_user(message.from_user.id)
         blockuser(message.from_user.id)
+        return
       sb= await setbot.get_me()
       un= sb.username
       result= await kingbot.get_inline_bot_results(un , f"pmsg_{message.from_user.id}")
@@ -47,6 +48,7 @@ async def pm_chker(_ , message):
                         callback_data=f"decine_{message.from_user.id}"
                     ),
                 ])
+      ow=kingbot.get_me()
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
    
 async def infilter(_,__, inline_query):
