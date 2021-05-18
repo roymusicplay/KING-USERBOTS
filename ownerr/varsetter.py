@@ -23,7 +23,7 @@ async def varistr(_, message):
              else:
                      pass
         if keyy== "VC_API_ID":
-              keyy = int(keyy)
+              keyy = int(valuee)
         try:
            vr.set(keyy , valuee)
            message.edit_text("The var has been set\n Restart the app to enjoy")
