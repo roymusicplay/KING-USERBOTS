@@ -28,4 +28,5 @@ async def varistr(_, message):
            await vr.set(keyy , valuee)
            await message.edit_text("The var has been set\n Restart the app to enjoy")
         except Exception as err:
+           await message.reply_text("error")
            await message.edit_text(f"Encountered a error:{str(err)}")
