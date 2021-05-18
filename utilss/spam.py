@@ -21,12 +21,12 @@ async def spam(client, message):
             await client.send_message(
                 message.chat.id, to_spam
             )
-            await asyncio.sleep(0.20)
+            await asyncio.sleep(0.10)
 
     if message.chat.type == "private":
         for i in range(int(times)):
             await client.send_message(message.chat.id, to_spam)
-            await asyncio.sleep(0.20)
+            await asyncio.sleep(0.10)
 
 
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("spamstk", vr.get("HNDLR")))
@@ -48,7 +48,7 @@ async def spam_stick(client, message):
                     sticker,
                     reply_to_message_id=ReplyCheck(message),
                 )
-                await asyncio.sleep(0.20)
+                await asyncio.sleep(0.10)
 
         if message.chat.type == "private":
             for i in range(int(times)):
@@ -56,4 +56,4 @@ async def spam_stick(client, message):
                 await client.send_sticker(
                     message.chat.id, sticker
                 )
-                await asyncio.sleep(0.20)
+                await asyncio.sleep(0.10)
