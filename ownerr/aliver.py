@@ -18,10 +18,10 @@ async def gooe_search(client, message):
     reply_msg += "------------------\n"
     end_time = time.time()
     ping_time = round((end_time - start_time) * 1000, 3)
-    reply_msg += f",🔸Pɪɴɢ Tɪᴍᴇ: {ping_time}ms\n\n"
-    reply_msg += f",🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: {uptime}\n\n"
-    reply_msg += f",🔸Sᴜᴘᴘᴏʀᴛ: @KingUserBots\n"
-    reply_msg += f",🔹Pʏᴛʜᴏɴ: 3.8\n\n"
+    reply_msg += f"🔸Pɪɴɢ Tɪᴍᴇ: {ping_time}ms\n\n"
+    reply_msg += f"🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: {uptime}\n\n"
+    reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: @KingUserBots\n"
+    reply_msg += f"🔹Pʏᴛʜᴏɴ: 3.8\n\n"
     reply_msg += f"Sᴇʀᴠᴇʀꜱ Fᴜɴᴄᴛɪᴏɴɪɴɢ Nᴏʀᴍᴀʟ"
     await client.send_photo(message.chat.id , Alive_pic , reply_msg)
     await message.delete()
