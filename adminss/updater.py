@@ -74,10 +74,6 @@ async def update(_, message):
         repo.create_head(U_BRANCH, origin.refs.main)
         repo.heads.main.set_tracking_branch(origin.refs.main)
         repo.heads.main.checkout(True)
-    if repo.active_branch.name != U_BRANCH:
-        return await msg_.edit(
-            f"`Seems Like You Are Using Custom Branch - {repo.active_branch.name}! Please Switch To {U_BRANCH} To Make This Updater Function!`"
-        )
     try:
         repo.create_remote("upstream", REPO_)
     except BaseException:
