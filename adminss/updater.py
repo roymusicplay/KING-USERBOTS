@@ -87,7 +87,7 @@ async def update(_, message):
             repo.git.reset("--hard", "FETCH_HEAD")
         await runcmd("pip3 install --no-cache-dir -r requirements.txt")
         await msg_.edit("`Updated Sucessfully! Give Me A min To Restart!`")
-        args = [sys.executable, "-m", "main_startup"]
+        args = [sys.executable, "-m", "kingbot"]
         execle(sys.executable, *args, environ)
         exit()
         return
@@ -99,7 +99,7 @@ async def update(_, message):
         else:
             remote = repo.create_remote("heroku",HEROKU_URL)
         try:
-            remote.push(refspec="HEAD:refs/heads/ToxicCyber", force=True)
+            remote.push(refspec="HEAD:refs/heads/master", force=True)
         except BaseException as error:
             return await msg_.edit(f"**Updater Error** \nTraceBack : `{error}`")
         await msg_.edit("`Build Started! Please Wait For 10-15 Minutes!`")
