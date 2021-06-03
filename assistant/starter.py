@@ -8,4 +8,4 @@ HNDLR="/"
 @setbot.on_message(filters.command("start",HNDLR) & filters.user(Adminsettings))
 async def start(_, message: Message):
     await message.reply_text(
-        "Shit u are allowed dear!! \n Only Kings wield this power" )
+        "Shit u are allowed dear!!😂😂😂 \n Only Kings wield this power" )
