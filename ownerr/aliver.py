@@ -14,15 +14,16 @@ Alive_pic = "https://telegra.ph/file/f4d1374c461d60e0d2b0d.jpg"
 async def gooe_search(client, message):
     start_time = time.time()
     uptime = (datetime.now() - START_TIME)
-    reply_msg = f"**MADE IN 🇮🇳 MADE WITH 💞**"
-    reply_msg += "------------------\n"
+    reply_msg = f"**MADE IN 🇮🇳 , MADE WITH 😻**"
+    reply_msg += "------------------\n\n"
     end_time = time.time()
     ping_time = round((end_time - start_time) * 1000, 3)
-    reply_msg += f"🔸Pɪɴɢ Tɪᴍᴇ: {ping_time}ms\n\n"
-    reply_msg += f"🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: {uptime}\n\n"
-    reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: @KingUserBots\n"
-    reply_msg += f"🔹Pʏᴛʜᴏɴ: 3.8\n\n"
-    reply_msg += f"Sᴇʀᴠᴇʀꜱ Fᴜɴᴄᴛɪᴏɴɪɴɢ Nᴏʀᴍᴀʟ"
+    reply_msg += f"🔸Pɪɴɢ Tɪᴍᴇ: **{ping_time}ms\n**"
+    reply_msg += f"🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: **{uptime}\n**"
+    reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: **@KingUserBots\n**"
+    reply_msg += f"🔹Fᴏʀᴋ ʙʏ: **@DeCoDeRoBoT\n**"
+    reply_msg += f"🔸Pʏᴛʜᴏɴ: **3.8\n\n**"
+    reply_msg += f"🍹Sᴇʀᴠᴇʀꜱ Fᴜɴᴄᴛɪᴏɴɪɴɢ Nᴏʀᴍᴀʟ🍹"
     await client.send_photo(message.chat.id , Alive_pic , reply_msg)
     await message.delete()
     if vcbot is not None:
