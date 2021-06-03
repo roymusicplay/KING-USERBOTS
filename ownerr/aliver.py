@@ -9,7 +9,7 @@ __**This command helps you to check wether userbot is alive**__
 ──「 **Usage** 」──
 -> `alive`
 """
-Alive_pic = "https://telegra.ph/file/f4d1374c461d60e0d2b0d.jpg"
+Alive_pic = "https://telegra.ph/file/739429bd7ad31bcb7c343.jpg"
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("alive",vr.get("HNDLR")))
 async def gooe_search(client, message):
     start_time = time.time()
