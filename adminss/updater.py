@@ -53,7 +53,7 @@ async def update(_, message):
     "UPSTREAM_REPO", "https://github.com/ToxicCybers/kinguserbot"
     )
 
-    U_BRANCH = "ToxicCyber"
+    U_BRANCH = "main"
     HEROKU_URL=None
     if HEROKU_API and HEROKU_APP_NAME:
         HEROKU_URL = fetch_heroku_git_url(HEROKU_API, HEROKU_APP_NAME)
