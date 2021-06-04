@@ -99,7 +99,7 @@ async def update(_, message):
         else:
             remote = repo.create_remote("heroku",HEROKU_URL)
         try:
-            remote.push(refspec="HEAD:refs/heads/master", force=True)
+            remote.push(refspec="HEAD:refs/heads/main", force=True)
         except BaseException as error:
             return await msg_.edit(f"**Updater Error** \nTraceBack : `{error}`")
         await msg_.edit("`Build Started! Please Wait For 10-15 Minutes!`")
