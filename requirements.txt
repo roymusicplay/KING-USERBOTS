@@ -13,9 +13,12 @@ pytube==10.8.1
 certifi==2020.6.20
 chardet==3.0.4
 chucknorris==2.8
+ffmpeg-python>=0.2.0
 youtube_dl==2021.5.16 
 py-kinguserbot==1.4
+motor>=2.3.1
 youtube-search-python
+pymediainfo>=5.1.0
 google==3.0.0
 google-search==1.1.1
 googlesearch-python==2020.0.2
@@ -28,7 +31,7 @@ Naked==0.1.31
 nekobin==0.0.3
 Pastebin==1.1.2
 psutil==5.8.0
-py-tgcalls==0.5.0
+pytgcalls
 pyaes==1.6.1
 PySocks==1.7.1
 pyspeedtest==1.2.7
