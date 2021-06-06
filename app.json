@@ -60,6 +60,10 @@
             "value": "",
             "required": false
         },
+        "MONGO_DATABASE": {
+            "description": "Your mongo database url",
+            "value": ""
+        },
         "LOG_CHANNEL": {
             "description": "Create a private group. Add @missrose_bot and your BOT_USERNAME bot. Do /id. Paste that here",
             "value": ""
