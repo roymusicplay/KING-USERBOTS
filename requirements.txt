@@ -15,7 +15,7 @@ chardet==3.0.4
 chucknorris==2.8
 ffmpeg-python>=0.2.0
 youtube_dl==2021.5.16 
-py-kinguserbot==1.4
+py-kinguserbot==1.5
 motor>=2.3.1
 youtube-search-python
 pymediainfo>=5.1.0
