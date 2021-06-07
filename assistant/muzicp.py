@@ -11,6 +11,8 @@ from youtubesearchpython import SearchVideos
 from pyrogram import filters
 s = []
 s_dict = {}
+if vcbot is not None:
+    vcbot.start()
 group_call = GroupCall(vcbot, play_on_repeat=False)
 
 
