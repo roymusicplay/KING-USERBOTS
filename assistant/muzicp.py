@@ -12,8 +12,6 @@ from pyrogram import filters
 s = []
 s_dict = {}
 group_call = GroupCall(vcbot, play_on_repeat=False)
-if vcbot is not None:
-    vcbot.start()
 
 @setbot.on_message(
     filters.command(["play"])
