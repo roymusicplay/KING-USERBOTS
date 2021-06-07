@@ -20,7 +20,7 @@ group_call = GroupCall(vcbot, play_on_repeat=False)
     & ~ filters.edited
 )
 async def pl(client, message):
-    play = await message.edit_text("`Please Wait!`")
+    play = await message.reply_text("`Please Wait!`")
     song = f"**PlayList in {message.chat.title}** \n"
     sno = 0
     if not s:
@@ -43,7 +43,7 @@ async def playout_ended_handler(group_call, filename):
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     if not s:
-        await client_.send_message(
+        await setbot.send_message(
             int(f"-100{group_call.full_chat.id}"),
             f"`Finished Playing. Nothing Left Play! Left VC.`",
         )
@@ -63,9 +63,9 @@ async def playout_ended_handler(group_call, filename):
 )
 async def ski_p(client, message):
     if not group_call.is_connected:
-        await message.edit("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return 
-    m_ = await message.edit_text("`Please Wait!`")
+    m_ = await message.reply_text("`Please Wait!`")
     no_t_s = get_text(message)
     if not no_t_s:
         return await m_.edit("`Give Me Valid List Key Len.`")
@@ -103,7 +103,7 @@ async def ski_p(client, message):
 async def play_m(client, message):
     global s
     global s_dict
-    u_s = await message.edit_text("`Processing..`")
+    u_s = await message.reply_text("`Processing..`")
     if message.reply_to_message:
          if message.reply_to_message.audio:
              await u_s.edit_text("`Please Wait, Let Me Download This File!`")
@@ -196,9 +196,9 @@ async def convert_to_raw(audio_original, raw_file_name):
 )
 async def no_song_play(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return    
-    await message.edit_text(f"`⏸ Paused {str(group_call.input_filename).replace('.raw', '')}.`")
+    await message.reply_text(f"`⏸ Paused {str(group_call.input_filename).replace('.raw', '')}.`")
     group_call.pause_playout()
     
     
@@ -209,10 +209,10 @@ async def no_song_play(client, message):
 )
 async def wow_dont_stop_songs(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return    
     group_call.resume_playout()
-    await message.edit_text(f"`▶️ Resumed.`")
+    await message.reply_text(f"`▶️ Resumed.`")
         
         
 @setbot.on_message(
@@ -222,12 +222,12 @@ async def wow_dont_stop_songs(client, message):
 )
 async def kill_vc_(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     group_call.stop_playout()
-    await message.edit_text("`Stopped Playing Songs!`")
+    await message.reply_text("`Stopped Playing Songs!`")
 
 
 @setbot.on_message(
@@ -237,10 +237,10 @@ async def kill_vc_(client, message):
 )
 async def replay(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return
     group_call.restart_playout()
-    await message.edit_text(f"`Re-Playing : {group_call.input_filename}`")
+    await message.reply_text(f"`Re-Playing : {group_call.input_filename}`")
 
 
 @setbot.on_message(
@@ -250,10 +250,10 @@ async def replay(client, message):
 )
 async def rejoinvcpls(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return
     await group_call.reconnect()
-    await message.edit_text(f"`Rejoined! - Vc`")
+    await message.reply_text(f"`Rejoined! - Vc`")
 
 
 @setbot.on_message(
@@ -263,12 +263,12 @@ async def rejoinvcpls(client, message):
 )
 async def leave_vc_test(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     await group_call.stop()
-    await message.edit_text(f"`Left : {message.chat.title} - Vc`")
+    await message.reply_text(f"`Left : {message.chat.title} - Vc`")
 
 @setbot.on_message(
     filters.command(["setvol"])
@@ -277,21 +277,21 @@ async def leave_vc_test(client, message):
 )
 async def set_vol(client, message):
     if not group_call.is_connected:
-        await message.edit_text("`Is Group Call Even Connected?`")
+        await message.reply_text("`Is Group Call Even Connected?`")
         return
     volume = get_text(message)
     if not volume:
-        await message.edit_text("Volume Should Be Integer!")
+        await message.reply_text("Volume Should Be Integer!")
         return
     if not volume.isdigit():
-        await message.edit_text("Volume Should Be Integer!")
+        await message.reply_text("Volume Should Be Integer!")
         return
     if int(volume) < 2:
-        await message.edit_text("Volume Should Be Above 2")
+        await message.reply_text("Volume Should Be Above 2")
         return
     if int(volume) >= 100:
-        await message.edit_text("Volume Should Be Below 100")
+        await message.reply_text("Volume Should Be Below 100")
         return
     await group_call.set_my_volume(volume)
-    await message.edit_text(f"**Volume :** `{volume}`")
+    await message.reply_text(f"**Volume :** `{volume}`")
 
