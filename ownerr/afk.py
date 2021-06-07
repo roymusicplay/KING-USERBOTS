@@ -6,8 +6,11 @@ from kingbot import kingbot, setbot , vr, Adminsettings
 import re
 from sql_helper.afk import check_fk, go_fk, no_fk
 afk_sanity_check: dict = {}
-
-
+__MODULE__ = "Afk"
+__HELP__ = """
+-> `afk`
+__**This command helps you to check wether userbot is afk**__
+"""
 async def is_afk_(f, client, message):
     af_k_c = await check_fk()
     if af_k_c:
