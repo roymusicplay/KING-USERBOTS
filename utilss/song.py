@@ -10,7 +10,10 @@ from kingbot import kingbot, vr , setbot, Adminsettings
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message
-
+from urllib.request import urlretrieve
+import requests as r
+import wget
+from utilss.paste import get_text
 __MODULE__ = "Song"
 __HELP__ = """
 __**This command helps you to download and send songs to a chat**__
@@ -84,3 +87,28 @@ async def song(client, message):
     os.remove(f"{str(user_id)}.mp3")
 	
 	
+@kingbot.on_message(filters.command("saavan", vr.get("HNDLR")) & filters.user(Adminsettings))
+async def savnana(client, message):
+    song = get_text(message)
+    if not song:
+        return await message.edit_text("`Give me Something to Search")
+    hmm = time.time()
+    lol = await message.edit_text("`Searching on Saavn...`")
+    sung = song.replace(" ", "%20")
+    url = f"https://jostapi.herokuapp.com/saavn?query={sung}"
+    try:
+        k = (r.get(url)).json()[0]
+    except IndexError:
+        return await eod(lol, "`Song Not Found.. `")
+    title = k["song"]
+    urrl = k["media_url"]
+    img = k["image"]
+    duration = k["duration"]
+    singers = k["singers"]
+    urlretrieve(urrl, title + ".mp3")
+    urlretrieve(img, title + ".jpg")
+    file= await wget.download(urrl)
+    await client.send_audio(message.chat.id,file,caption=f"Song from saavan uploaded by king Userbot \n Song name={title}\n Singers={singers}) )   
+    await lol.delete()
+    os.remove(title + ".mp3")
+    os.remove(title + ".jpg")
