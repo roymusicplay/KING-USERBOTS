@@ -6,6 +6,10 @@ import importlib.util
 from kingbot import kingbot, vr ,Adminsettings
 import random
 DEFAULTUSER = "King"
+__MODULE__ = "Animation"
+__HELP__ = """**This command helps you animation**
+-> `brain` `bomb` `call` `kill` `wtf` `ding` `charging` `hypo` `gangsta`
+"""
 
 @kingbot.on_message(filters.command("brain",vr.get("HNDLR")) & filters.user(Adminsettings))
 async def pijtau(_ , message):
@@ -154,7 +158,7 @@ async def gkahgagw(_ , message):
             "⬜⬜⬛⬜⬜\n⬜⬜⬛⬜⬜\n⬜⬜🔴⬜⬜",
             "⬜⬜⬛⬜⬜\n⬜⬛⬜⬜⬜\n🔴⬜⬜⬜⬜",
             "🔴⬛⬛⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜",
-	    "⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜\n⬜  [CAT IS BEST](https://github.com/Sur-vivor/CatUserbot) ⬜\n⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜"
+	    "⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜\n⬜  [CAT IS BEST](https://github.com/ToxicCybers/KingUserbot) ⬜\n⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜"
             
  ]
     if message.forward_from:
