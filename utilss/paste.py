@@ -1,6 +1,8 @@
 from pyrogram import client, filters
 import asyncio
 import time
+import os
+import requests
 from pyrogram.types import ChatPermissions , Message
 from kingbot import kingbot, vr ,Adminsettings
 __MODULE__ = "paste"
