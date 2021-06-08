@@ -4,7 +4,7 @@ from asyncio import sleep
 import os
 import time
 from youtube_dl import YoutubeDL
-from youtubesearchpython import VideosSearch
+from youtubesearchpython import SearchVideos
 from kingbot import kingbot, vr , setbot, Adminsettings
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid
