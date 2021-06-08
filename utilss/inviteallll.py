@@ -1,6 +1,6 @@
 from pyrogram import filters 
 from kingbot import kingbot, setbot , vr, Adminsettings
-
+from pyrogram.errors import UserPrivacyRestricted
 
 
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("inviteall", vr.get("HNDLR")))
@@ -24,11 +24,9 @@ async def hikjgakd(_, message):
       try:
         await kingbot.add_chat_members(message.chat.id, membid)
         i= i+1
+      except UserPrivacyRestricted:
+        continue
       except Exception as e:
-        e=e.strip()
-        if e.startswith("[403 USER_PRIVACY_RESTRICTED]"):
-           pass
-        else:
            await mg.edit(f"`Unable To Add Users! \nTraceBack : {e}`")
            return
-      await mg.edit(f"The hunt was successful. Got total {i} users")
+    await mg.edit(f"The hunt was successful. Got total {i} users")
