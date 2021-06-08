@@ -15,7 +15,8 @@ async def mute(_, message):
     
     msg_id=message.message_id
     chat_id=message.chat.id
-    can_mute=kingbot.get_chat_member(chat_id , "me").can_restrict_members
+    zuzu=await kingbot.get_chat_member(chat_id , "me")
+    can_mute=zuzu.can_restrict_members
     chat_msg=message.text
     
     user_id=None
@@ -26,7 +27,8 @@ async def mute(_, message):
     else:                   
         user_id=message.reply_to_message.from_user.id
     user_info=await kingbot.get_users(user_id)
-    can_user_ban=await kingbot.get_chat_member(chat_id , user_id).can_restrict_members
+    zizi= await kingbot.get_chat_member(chat_id , user_id)
+    can_user_ban=zizi.can_restrict_members
 
     if(can_mute):
         if(can_user_ban):
