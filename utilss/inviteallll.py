@@ -25,6 +25,10 @@ async def hikjgakd(_, message):
         await kingbot.add_chat_members(message.chat.id, membid)
         i= i+1
       except Exception as e:
-        await mg.edit(f"`Unable To Add Users! \nTraceBack : {e}`")
-        return
+        e=e.strip()
+        if e.startswith("[403 USER_PRIVACY_RESTRICTED]"):
+           pass
+        else:
+           await mg.edit(f"`Unable To Add Users! \nTraceBack : {e}`")
+           return
       await mg.edit(f"The hunt was successful. Got total {i} users")
