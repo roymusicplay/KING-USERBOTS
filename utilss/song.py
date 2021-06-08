@@ -104,8 +104,57 @@ async def savnana(client, message):
     singers = k["singers"]
     urlretrieve(urrl, title + ".mp3")
     urlretrieve(img, title + ".jpg")
-    file= await wget.download(urrl)
+    file= wget.download(urrl)
     await client.send_audio(message.chat.id,file,caption=f"Song from saavan uploaded by king Userbot \n Song name={title}\n Singers={singers}" )   
     await lol.delete()
     os.remove(title + ".mp3")
     os.remove(title + ".jpg")
+
+@kingbot.on_message(filters.command("deezee", vr.get("HNDLR")) & filters.user(Adminsettings))
+async def deezergeter(client, message):
+    rep = await message.edit_text("`Searching For Song On Deezer.....`")
+    sgname = get_text(message)
+    if not sgname:
+        await rep.edit(
+            "`Please Give Me A Valid Input. You Can Check Help Menu To Know More!`"
+        )
+        return
+    link = f"https://api.deezer.com/search?q={sgname}&limit=1"
+    dato = r.get(url=link).json()
+    match = dato.get("data")
+    try:
+        urlhp = match[0]
+    except IndexError:
+        await rep.edit("`Song Not Found. Try Searching Some Other Song`")
+        return
+    urlp = urlhp.get("link")
+    thumbs = urlhp["album"]["cover_big"]
+    thum_f = wget.download(thumbs)
+    polu = urlhp.get("artist")
+    replo = urlp[29:]
+    urlp = f"https://starkapis.herokuapp.com/deezer/{replo}"
+    datto = requests.get(url=urlp).json()
+    mus = datto.get("url")
+    sname = f"{urlhp.get('title')}.mp3"
+    doc = r.get(mus)
+    await client.send_chat_action(message.chat.id, "upload_audio")
+    await rep.edit("`Downloading Song From Deezer!`")
+    with open(sname, "wb") as f:
+        f.write(doc.content)
+    c_time = time.time()
+    car = f"""
+**Song Name :** {urlhp.get("title")}
+**Duration :** {urlhp.get('duration')} Seconds
+**Artist :** {polu.get("name")}
+Music Downloaded And Uploaded By King Userbot"""
+    await rep.edit(f"`Downloaded {sname}! Now Uploading Song...`")
+    await client.send_audio(
+        message.chat.id,
+        audio=open(sname, "rb"),
+        duration=int(urlhp.get("duration")),
+        title=str(urlhp.get("title")),
+        performer=str(polu.get("name")),
+        thumb=thum_f,
+        caption=car)
+    await client.send_chat_action(message.chat.id, "cancel")
+    await rep.delete()
