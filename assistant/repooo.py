@@ -26,7 +26,7 @@ async def ibnrp(_ , inline_query):
             InlineQueryResultArticle(
                 title="Feel like a king",
                 input_message_content=stosen,
-                thumb_url="https://telegra.ph/file/d19f785fb32bf4eaa62fd.jpg"
+                thumb_url="https://telegra.ph/file/d19f785fb32bf4eaa62fd.jpg",
                 reply_markup=keboard,
             ),
         ]
