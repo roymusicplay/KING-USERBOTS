@@ -18,6 +18,7 @@ from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
 from kingbot import kingbot, vr , Adminsettings
 from utilss.paste import get_text
+from utilss.vitoo import run_cmd
 
 async def convert_to_image(message, client) -> [None, str]:
     """Convert Most Media Formats To Raw Image"""
