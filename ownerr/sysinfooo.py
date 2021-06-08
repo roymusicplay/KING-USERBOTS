@@ -28,7 +28,7 @@ async def pijhaau(_ , message):
         cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
     else:
         cpu_freq = f"{round(cpu_freq, 2)}MHz"
-    du = psutil.disk_usage(client.workdir)
+    du = psutil.disk_usage(kingbot.workdir)
     psutil.disk_io_counters()
     disk = f"{du.used} / {du.total} " f"({du.percent}%)"
     cpu_len = len(psutil.Process().cpu_affinity())
