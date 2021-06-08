@@ -7,7 +7,10 @@ from sql_helper.autopostingdb import (
     del_autopost,
     get_autopost,
 )
-
+__MODULE__ = "Auto Post"
+__HELP__ = """**This command helps you to Auto post**
+-> `autopost` `rmapst`
+"""
 
 @kingbot.on_message(filters.command("autopost", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def autopost(client, message):
