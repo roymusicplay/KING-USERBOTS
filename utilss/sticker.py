@@ -101,7 +101,7 @@ async def packinfo(client, message):
 
 @kingbot.on_message(filters.command("kang", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def packinfo(client, message):
-    rep= await edit_or_reply(message, "`Using Megic To Kang This Sticker...`")
+    rep= await message.edit_text("`Using Megic To Kang This Sticker...`")
     if not message.reply_to_message:
         await rep.edit("Please Reply To Sticker...")
         return
@@ -175,7 +175,7 @@ async def packinfo(client, message):
         while limit in messi.text:
             pack += 1
             prev_pack = int(pack) - 1
-            await pablo.edit(f"Kang Pack Vol __{prev_pack}__ is Full! Switching To Vol __{pack}__ Kang Pack")
+            await rep.edit(f"Kang Pack Vol __{prev_pack}__ is Full! Switching To Vol __{pack}__ Kang Pack")
             packname = f"@{nm} Kang Pack {pack}"
             packshortname = f"FRIDAY_{message.from_user.id}_{pack}"
             if is_anim:
