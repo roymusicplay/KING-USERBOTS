@@ -11,17 +11,18 @@ __**This command helps you to lock messages for non-admins in the chat**__
 """
 
 @kingbot.on_message(filters.command("lock",vr.get("HNDLR")) & filters.user(Adminsettings))  
-def lock(_ , message):
+async def lock(_ , message):
     chat_id=message.chat.id
-    can_lock=kingbot.get_chat_member(chat_id , "me").can_restrict_members
+    can_lock=await kingbot.get_chat_member(chat_id , "me").can_restrict_members
     if not can_lock:
-        message.reply("Don't have enough permissions !!")
+        await message.edit_text("Don't have enough permissions !!")
     else:
-        message.reply("Chat has been locked for all non-admins !!")
-        kingbot.set_chat_permissions(
+        await kingbot.set_chat_permissions(
             chat_id,
             ChatPermissions(
                 can_send_messages=False,
                 can_invite_users=True
             )
         )
+        await message.edit_text("Chat has been locked for all non-admins !!")
+       
