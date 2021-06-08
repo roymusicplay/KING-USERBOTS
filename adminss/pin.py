@@ -22,8 +22,9 @@ async def pin_message(_, message):
             await kingbot.pin_chat_message(chat_id , reply_msg_id , both_sides=True)
             await message.edit_text("Done the Job master !")
         else:
-            can_pin=await kingbot.get_chat_member(chat_id , "me").can_pin_messages
-            if can_pin == None:
+            zuzu= await kingbot.get_chat_member(chat_id , "me")
+            can_pin=zuzu.can_pin_messages
+            if not can_pin:
                 await kingbot.edit_message_text(chat_id , msg_id , "Not a admin bruh 🥱") 
             else:         
                 reply_msg_id=message.reply_to_message.message_id
