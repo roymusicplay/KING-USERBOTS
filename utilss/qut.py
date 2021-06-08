@@ -38,7 +38,8 @@ async def nice_qbot(client, message):
        
 async def check_history(bot, client):
     its_history = (await client.get_history(bot, 1))[0]
-    if its_history.from_user.id == client.me.id:
+    meeee=await client.get_me()
+    if its_history.from_user.id == meeee.id:
         return None
     if not its_history.sticker:
         return None
