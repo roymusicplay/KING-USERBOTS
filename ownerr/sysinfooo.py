@@ -11,6 +11,10 @@ import psutil
 from pyrogram import __version__
 from pyrogram import filters
 from kingbot import kingbot , vr , Adminsettings
+__MODULE__ = "System"
+__HELP__ = """**This command helps you to Bot System**
+-> `sysinfo` `restart`
+"""
 
 @kingbot.on_message(filters.command("sysinfo",vr.get("HNDLR")) & filters.user(Adminsettings))
 async def pijhaau(_ , message):
