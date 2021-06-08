@@ -2,6 +2,10 @@ from kingbot import kingbot, vr, Adminsettings
 from pyrogram import filters
 
 PRINTABLE_ASCII = range(0x21, 0x7f)
+__MODULE__ = "Ae"
+__HELP__ """**This command helps you to AE**
+-> `ae`
+"""
 
 
 def aesthetify(string):
