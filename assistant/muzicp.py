@@ -12,6 +12,10 @@ from pyrogram import filters
 s = []
 s_dict = {}
 group_call = GroupCall(vcbot, play_on_repeat=False)
+__MODULE__ = "VcPlayer"
+__HELP__ = """**This command helps you to Vc Player**
+-> 'play` `splay` `skip` `next` `pause` `resume` `replay` `stope` `rejoin` `leave` `setvol`
+"""
 
 @setbot.on_message(
     filters.command(["play"])
