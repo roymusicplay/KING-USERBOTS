@@ -24,4 +24,4 @@ async def set_chat_photo(_, message):
             await kingbot.set_chat_photo(chat_id , photo=message.reply_to_message.photo.file_id)
             return
     else:
-        message.edit_text("Reply to a photo to set it !")
+        await message.edit_text("Reply to a photo to set it !")
