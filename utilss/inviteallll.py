@@ -20,6 +20,7 @@ async def hikjgakd(_, message):
     async for memb in kingbot.iter_chat_members(trgt):
       membe= memb.user
       membid= membe.id
+      await mg.edit(f"trying to add{membe.mention}"
       try:
         await kingbot.add_chat_members(message.chat.id, membid)
         i= i+1
