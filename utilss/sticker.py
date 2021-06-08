@@ -70,7 +70,7 @@ async def packinfo(client, message):
         await rep.edit("Please Reply To Sticker...")
         return
     if not message.reply_to_message.sticker:
-        await rep.edit("Please Reply To Sticker...")
+        await rep.edit("Please Reply To A Sticker...")
         return
     if not message.reply_to_message.sticker.set_name:
         await rep.edit("`Seems Like A Stray Sticker!`")
