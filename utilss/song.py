@@ -74,8 +74,7 @@ async def song(client, message):
         title=str(ytdl_data["title"]),
         performer=str(ytdl_data["uploader"]),
         thumb=downloaded_thumb,
-        caption=capy,
-        supports_streaming=True,
+        caption=capy
     )
     await rep.delete()
     for files in (downloaded_thumb, file_sung):
