@@ -24,8 +24,9 @@ async def member_unban(_ , message):
         username=message.reply_to_message.from_user.id
 
     chat_id=message.chat.id
-    can_ban=kingbot.get_chat_member(chat_id , "me").can_restrict_members
-    user_info=kingbot.get_users(username)
+    zuzu=await kingbot.get_chat_member(chat_id , "me")
+    can_ban=zuzu.can_restrict_members
+    user_info=await kingbot.get_users(username)
     if(can_ban):      
         await kingbot.unban_chat_member(chat_id , username)
         if(user_info.username):
