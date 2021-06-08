@@ -1,7 +1,7 @@
 from pyrogram import client, filters
 import asyncio
 import time
-from pyrogram.types import ChatPermissions
+from pyrogram.types import ChatPermissions , Message
 from kingbot import kingbot, vr ,Adminsettings
 __MODULE__ = "paste"
 __HELP__ = """
@@ -22,7 +22,7 @@ def get_text(message: Message) -> [None, str]:
     else:
         return None
 @kingbot.on_message(filters.command("paste",vr.get("HNDLR")) & filters.user(Adminsettings))  
-async def paste(_,message):
+async def paste(client,message):
     rep = await message.edit_text("`Please Wait.....`")
     tex_t = get_text(message)
     message_s = tex_t
