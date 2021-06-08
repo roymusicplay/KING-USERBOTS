@@ -19,6 +19,7 @@ from pyrogram.raw.types import InputStickerSetShortName
 from kingbot import kingbot, vr , Adminsettings
 from utilss.paste import get_text
 from utilss.vitoo import run_cmd
+from pyrogram import filters
 __MODULE__ = "Sticker"
 __HELP__ = """**This command helps you to Sticker**
 -> `packinfo` `kang`
