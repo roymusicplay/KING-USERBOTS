@@ -7,6 +7,10 @@ from pyrogram import filters
 from kingbot import kingbot , vr , Adminsettings
 from pymediainfo import MediaInfo
 from typing import Tuple
+__MODULE__ = "Convert"
+__HELP__ = """**This command helps you to convert**
+-> `subtitle` `ffwd` `slwdwn` `vidnot`
+"""
 
 async def convert_vid_to_vidnote(input_vid: str, final_path: str):
     """ Convert Video To Video Note (Round) """
