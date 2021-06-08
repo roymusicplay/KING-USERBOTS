@@ -24,7 +24,8 @@ async def unmute(_, message):
         username=message.reply_to_message.from_user.id
 
     chat_id=message.chat.id
-    can_unmute=await kingbot.get_chat_member(chat_id , "me").can_restrict_members
+    zuzu=await kingbot.get_chat_member(chat_id , "me")
+    can_unmute=zuzu.can_restrict_members
     user_info=await kingbot.get_users(username)
     if(can_unmute):      
         await kingbot.restrict_chat_member(chat_id , username , message.chat.permissions)
