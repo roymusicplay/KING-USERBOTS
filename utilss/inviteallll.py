@@ -24,7 +24,7 @@ async def hikjgakd(_, message):
       try:
         await kingbot.add_chat_members(message.chat.id, membid)
         i= i+1
-      except BaseException as e:
+      except Exception as e:
         await mg.edit(f"`Unable To Add Users! \nTraceBack : {e}`")
         return
       await mg.edit(f"The hunt was successful. Got total {i} users")
