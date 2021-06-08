@@ -12,7 +12,11 @@ from pyrogram.types import (
 from sql_helper.gbandb import gban_info, gban_list, gban_user, ungban_user
 from sql_helper.gmutedb import gmute, is_gmuted, ungmute
 from kingbot import kingbot, setbot , vr, Adminsettings
- 
+__MODULE__ = "Gban"
+__HELP__ = """**This command helps you to instantly Gban a user in the chat**
+-> `gban` `ungban` `gmute` `ungmute` `gbanlist` `gcast`
+"""
+
 async def iter_chats(client):
     """Iter Your All Chats"""
     chats = []
