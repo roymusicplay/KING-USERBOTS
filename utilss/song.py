@@ -1,10 +1,9 @@
 import re
-import html
-import aiohttp
 from datetime import datetime
 from asyncio import sleep
 import os
-from pytube import YouTube
+import time
+from youtube_dl import YoutubeDL
 from youtubesearchpython import VideosSearch
 from kingbot import kingbot, vr , setbot, Adminsettings
 from pyrogram import Client, filters
@@ -20,71 +19,69 @@ __**This command helps you to download and send songs to a chat**__
 ──「 **Usage** 」──
 -> `song name`
 """
-def yt_search(song):
-    videosSearch = VideosSearch(song, limit=1)
-    result = videosSearch.result()
-    if not result:
-        return False
-    else:
-        video_id = result["result"][0]["id"]
-        url = f"https://youtu.be/{video_id}"
-        return url
-
-
-class AioHttp:
-    @staticmethod
-    async def get_json(link):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(link) as resp:
-                return await resp.json()
-
-    @staticmethod
-    async def get_text(link):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(link) as resp:
-                return await resp.text()
-
-    @staticmethod
-    async def get_raw(link):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(link) as resp:
-                return await resp.read()
-
-
 
 @kingbot.on_message(filters.command("song", vr.get("HNDLR")) & filters.user(Adminsettings))
 async def song(client, message):
-    chat_id = message.chat.id
-    user_id = message.from_user["id"]
-    txt = message.text
-    args= txt.split(" ",1)[1]
-    if args is None:
-        await message.reply("Enter a song name. Check /help")
-        return ""
-    status = await message.reply("Processing...")
-    video_link = yt_search(args)
-    if not video_link:
-        await status.edit("Song not found.")
-        return ""
-    yt = YouTube(video_link)
-    audio = yt.streams.filter(only_audio=True).first()
+    input_str = get_text(message)
+    rep= await message.edit_text(f"`Processing...`")
+    if not input_str:
+        await rep.edit(
+            "`Please Give Me A Valid Input. You Can Check Help Menu To Know More!`"
+        )
+        return
+    await rep.edit(f"`Getting {input_str} From Youtube Servers. Please Wait.`")
+    search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
+    rt = search.result()
+    result_s = rt["search_result"]
+    url = result_s[0]["link"]
+    vid_title = result_s[0]["title"]
+    yt_id = result_s[0]["id"]
+    uploade_r = result_s[0]["channel"]
+    thumb_url = f"https://img.youtube.com/vi/{yt_id}/hqdefault.jpg"
+    await asyncio.sleep(0.6)
+    downloaded_thumb = wget.download(thumb_url)
+    opts = {
+        "format": "bestaudio",
+        "addmetadata": True,
+        "key": "FFmpegMetadata",
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "720",
+            }
+        ],
+        "outtmpl": "%(id)s.mp3",
+        "quiet": True,
+        "logtostderr": False,
+    }
     try:
-        download = audio.download(filename=f"{str(user_id)}")
-    except Exception as ex:
-        await status.edit(f"Failed to download song due to Error: {ex}")
-        return ""
-    rename = os.rename(download, f"{str(user_id)}.mp3")
-    await kingbot.send_chat_action(message.chat.id, "upload_audio")
-    await kingbot.send_audio(
-        chat_id=message.chat.id,
-        audio=f"{str(user_id)}.mp3",
-        duration=int(yt.length),
-        title=str(yt.title),
-        performer=str(yt.author),
-        reply_to_message_id=message.message_id,
+        with YoutubeDL(opts) as ytdl:
+            ytdl_data = ytdl.extract_info(url, download=True)
+    except Exception as e:
+        await rep.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
+        return
+    c_time = time.time()
+    file_sung= f"{ytdl_data['id']}.mp3"
+    capy = f"**Song Name ➠** `{vid_title}` \n**Requested For ➠** `{input_str}` \n**Channel ➠** `{uploade_r}` \n**Link ➠** `{url}`"
+    await client.send_audio(
+        message.chat.id,
+        audio=open(file_sung, "rb"),
+        title=str(ytdl_data["title"]),
+        performer=str(ytdl_data["uploader"]),
+        thumb=downloaded_thumb,
+        caption=capy,
+        supports_streaming=True,
     )
-    await status.delete()
-    os.remove(f"{str(user_id)}.mp3")
+    await rep.delete()
+    for files in (downloaded_thumb, file_sung):
+        if files and os.path.exists(files):
+            os.remove(files)
+            
 	
 	
 @kingbot.on_message(filters.command("saavan", vr.get("HNDLR")) & filters.user(Adminsettings))
