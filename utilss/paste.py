@@ -28,7 +28,7 @@ async def paste(_,message):
     message_s = tex_t
     if not tex_t:
         if not message.reply_to_message:
-            await pablo.edit("`Reply To File / Give Me Text To Paste!`")
+            await rep.edit("`Reply To File / Give Me Text To Paste!`")
             return
         if not message.reply_to_message.text:
             file = await message.reply_to_message.download()
