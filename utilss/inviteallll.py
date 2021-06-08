@@ -5,7 +5,7 @@ from kingbot import kingbot, setbot , vr, Adminsettings
 
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("inviteall", vr.get("HNDLR")))
 async def hikjgakd(_, message):
-    mg= message.edit_text("Roaring up")
+    mg=await message.edit_text("Roaring up")
     idoun= message.text
     idoun= idoun.split(None,1)[1]
     try:
