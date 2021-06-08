@@ -1,8 +1,10 @@
 from pyrogram import filters 
 from kingbot import kingbot, setbot , vr, Adminsettings
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , InlineQuery ,Message, CallbackQuery, InlineQueryResultArticle,InputTextMessageContent
-
-
+__MODULE__ = "Repo"
+__HELP__ = """**This command helps you to Repo**
+-> `repo`
+"""
 
 
 @kingbot.on_message(filters.user(Adminsettings) & filters.command("repo", vr.get("HNDLR")))
