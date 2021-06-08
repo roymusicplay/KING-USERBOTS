@@ -3,7 +3,7 @@ from pyrogram import filters
 
 PRINTABLE_ASCII = range(0x21, 0x7f)
 __MODULE__ = "Ae"
-__HELP__ """**This command helps you to AE**
+__HELP__= """**This command helps you to AE**
 -> `ae`
 """
 
