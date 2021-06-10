@@ -24,7 +24,7 @@ youtube-search-python
 pymediainfo>=5.1.0
 google==3.0.0
 google-search==1.1.1
-googlesearch-python==2020.0.2
+googlesearch-python== 1.0.1 
 greenlet==1.1.0
 idna==2.10
 joke-generator==1.0.1
