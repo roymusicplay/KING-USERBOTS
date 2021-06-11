@@ -11,7 +11,7 @@ __**This command helps you to unmute a user in the chat**__
 """
 
 @kingbot.on_message(filters.group & filters.command("unmute",vr.get("HNDLR")) & filters.user(Adminsettings))  
-async def unmute(_, message):
+async def unmute(client, message):
     msg_id=message.message_id
     chat_msg=message.text
     username=None
