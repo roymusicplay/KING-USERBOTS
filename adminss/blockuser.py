@@ -16,5 +16,5 @@ async def block_user(_, message):
         await message.reply("Can't block the group LOL !")
     else:
         user_id=message.chat.id
-        await message.reply("You have been blocked succesfully due to your sins !!")
-        await client.block_user(user_id)
+        await message.edit("You have been blocked succesfully due to your sins !!")
+        await client.block_user(int(user_id))
