@@ -11,7 +11,7 @@ __**This command helps you to unlock chat for non-admins in the chat**__
 """
 
 @kingbot.on_message(filters.command("unlock",vr.get("HNDLR")) & filters.user(Adminsettings))
-async def unlock(_, message):
+async def unlock(client, message):
     if message.chat.type in ["group", "supergroup"]:
         cmd = message.command
         me_m= message.from_user
