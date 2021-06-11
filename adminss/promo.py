@@ -61,23 +61,23 @@ async def promotte(_, message):
                     await asyncio.sleep(5)
                     await message.delete()
                 except UsernameInvalid:
-                    await message.edit_text("user_invalid"))
+                    await message.edit_text("user_invalid")
                     await asyncio.sleep(5)
                     await message.delete()
                     return
                 except PeerIdInvalid:
-                    await message.edit_text("peer_invalid"))
+                    await message.edit_text("peer_invalid")
                     await asyncio.sleep(5)
                     await message.delete()
                     return
                 except UserIdInvalid:
-                    await message.edit_text("id_invalid"))
+                    await message.edit_text("id_invalid")
                     await asyncio.sleep(5)
                     await message.delete()
                     return
 
                 except ChatAdminRequired:
-                    await message.edit_text("denied_permission"))
+                    await message.edit_text("denied_permission")
                     await asyncio.sleep(5)
                     await message.delete()
                     return
@@ -87,7 +87,7 @@ async def promotte(_, message):
                     return
 
         else:
-            await message.edit_text("denied_permission"))
+            await message.edit_text("denied_permission")
             await asyncio.sleep(5)
             await message.delete()
     else:
