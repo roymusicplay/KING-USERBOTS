@@ -18,7 +18,9 @@ async def promotte(_, message):
     chat_id=message.chat.id
     zuzuzu= message.from_user
     zuzu= await kingbot.get_chat_member(chat_id , zuzuzu.id)
-    can_promote=await zuzu.can_promote_members
+    print = zuzu
+    can_promote=zuzu.can_promote_members
+    print(can_promote)
     user_info=await kingbot.get_users(user_id)
     usercontact=None
     if(user_info.username):
