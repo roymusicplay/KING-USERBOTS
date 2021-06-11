@@ -11,7 +11,7 @@ __**This command helps you to lock messages for non-admins in the chat**__
 """
 
 @kingbot.on_message(filters.command("lock",vr.get("HNDLR")) & filters.user(Adminsettings))  
-async def lock(_ , message):
+async def lock(client , message):
     if message.chat.type in ["group", "supergroup"]:
         cmd = message.command
         me_m= message.from_user
