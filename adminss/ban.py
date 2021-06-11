@@ -14,7 +14,7 @@ __**This command helps you to instantly ban a user in the chat**__
 async def member_ban(client , message):
     if message.chat.type in ["group", "supergroup"]:
         chat_id = message.chat.id
-        me_m = client.me
+        me_m =await client.get_me
         me_ = await message.chat.get_member(int(me_m.id))
         if not me_.can_restrict_members:
          await message.edit("`You Don't Have Ban Permission!`")
