@@ -22,7 +22,7 @@ __**This command helps you to instantly promote someone in the chat**__
 @kingbot.on_message(filters.group & filters.command("promote",vr.get("HNDLR")) & filters.user(Adminsettings))  
 async def promotte(_, message):
   if message.chat.type in ["group", "supergroup"]:
-        cmd = message.command
+    cmd = message.command
     me_m= message.from_user
     me_ = await message.chat.get_member(int(me_m.id))
     if not me_.can_promote_members:
