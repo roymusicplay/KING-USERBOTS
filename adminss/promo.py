@@ -13,9 +13,11 @@ __**This command helps you to instantly promote someone in the chat**__
 @kingbot.on_message(filters.group & filters.command("promote",vr.get("HNDLR")) & filters.user(Adminsettings))  
 async def promotte(_, message):
     msg_id=message.message_id
-    user_id=message.reply_to_message.from_user.id
+    user_id=message.reply_to_message.from_user
+    user_id = user_id.id
     chat_id=message.chat.id
-    zuzu= await kingbot.get_chat_member(chat_id , message.user.id)
+    zuzuzu= message.from_user
+    zuzu= await kingbot.get_chat_member(chat_id , zuzuzu.id)
     can_promote=zuzu.can_promote_members
     user_info=await kingbot.get_users(user_id)
     usercontact=None
