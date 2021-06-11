@@ -3,8 +3,8 @@ async-lru==1.0.2
 async-timeout==3.0.1
 asyncio==3.4.3
 attrs==21.2.0
-backports.functools-lru-cache==1.6.4
-beautifulsoup4==4.9.1
+backports.functools-lru-cache>=1.6.4
+beautifulsoup4>=4.9.3
 bidict==0.21.2
 bs4==0.0.1
 dnspython>=2.1.0
