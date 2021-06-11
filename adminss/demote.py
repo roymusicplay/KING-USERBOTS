@@ -1,6 +1,14 @@
 from pyrogram import client, filters
 import asyncio
 import time
+from pyrogram.errors import (
+    UsernameInvalid,
+    ChatAdminRequired,
+    PeerIdInvalid,
+    UserIdInvalid,
+    UserAdminInvalid,
+    FloodWait,
+)
 from pyrogram.types import ChatPermissions
 from kingbot import kingbot, vr ,Adminsettings
 __MODULE__ = "demote"
@@ -12,50 +20,73 @@ __**This command helps you to instantly demote someone in the chat**__
 
 @kingbot.on_message(filters.group & filters.command("demote",vr.get("HNDLR")) & filters.user(Adminsettings))  
 async def demote(_, message):
-    msg_id=message.message_id
-    user_id=message.reply_to_message.from_user.id
-    chat_id=message.chat.id
-    can_promote=await kingbot.get_chat_member(chat_id , "me").can_promote_members
-    user_info=await kingbot.get_users(user_id)
-    usercontact=None
-    if(can_promote):
-        chat_msg=message.text
-        title=None
-        if " " in chat_msg:
-            space=chat_msg.index(" ")     
-            chat_msg=str(chat_msg)
-            title=chat_msg[space+1:len(chat_msg)]
-        await kingbot.promote_chat_member(
-            chat_id,
-            user_id,
-            can_manage_chat=False,
-            can_delete_messages=False,
-            can_restrict_members=False,
-            can_pin_messages=False,
-            can_manage_voice_chats=False,
-            can_invite_users=False,
+  if message.chat.type in ["group", "supergroup"]:
+    cmd = message.command
+    me_m= message.from_user
+    me_ = await message.chat.get_member(int(me_m.id))
+    if not me_.can_promote_members:
+        await message.edit("`Boss, You Don't Have Promote Permission!`")
+        return
+    can_promo = True
+    if can_promo:
+            try:
+                if message.reply_to_message:
+                    user_id = message.reply_to_message.from_user.id
+                    custom_rank = get_emoji_regexp().sub("", " ".join(cmd[1:]))
+                else:
+                    usr = await client.get_users(cmd[1])
+                    custom_rank = get_emoji_regexp().sub("", " ".join(cmd[2:]))
+                    user_id = usr.id
+            except IndexError:
+                await message.delete()
+                return
+
+            if user_id:
+                try:
+                    await client.promote_chat_member(
+             message.chat.id,
+             user_id,
             is_anonymous=False,
             can_change_info=False,
             can_post_messages=False,
             can_edit_messages=False,
-            can_promote_members=False
-        )
-        if(title):
-            await kingbot.set_administrator_title(chat_id, user_id,title)
-        if(user_info.username):
-            usercontact=user_info.username
-            reply_string="@"+usercontact+" has been demoted due to non-payment"
-            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
-        else:
-            usercontact=user_info.first_name
-            reply_string=usercontact+" has been demoted due to non-payment"
-            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
+            can_delete_messages=False,
+            can_restrict_members=False,
+            can_invite_users=False,
+            can_pin_messages=False,
+            can_promote_members=False,)
+                    await message.edit_text("demoted due to corruption")
+                    await asyncio.sleep(5)
+                    await message.delete()
+                except UsernameInvalid:
+                    await message.edit_text("user_invalid")
+                    await asyncio.sleep(5)
+                    await message.delete()
+                    return
+                except PeerIdInvalid:
+                    await message.edit_text("peer_invalid")
+                    await asyncio.sleep(5)
+                    await message.delete()
+                    return
+                except UserIdInvalid:
+                    await message.edit_text("id_invalid")
+                    await asyncio.sleep(5)
+                    await message.delete()
+                    return
+
+                except ChatAdminRequired:
+                    await message.edit_text("denied_permission")
+                    await asyncio.sleep(5)
+                    await message.delete()
+                    return
+
+                except Exception as e:
+                    await message.edit_text(f"**Log:** `{e}`")
+                    return
+
     else:
-        reply_string="Noob,you are not an admin !"
-        reply_len=len(reply_string)
-        for i in range(reply_len):
-            edit_string=reply_string[0:i+2]
-            try:
-                await kingbot.edit_message_text(chat_id , msg_id , edit_string )
-            except:
-                i=i+1
+            await message.edit_text("denied_permission")
+            await asyncio.sleep(5)
+            await message.delete()
+  else:
+        await message.delete()
