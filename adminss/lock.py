@@ -47,7 +47,7 @@ async def lock(client , message):
                 await message.delete()
 
             except Exception as e:
-                await messagee.edit_text("denied_permission")
+                await messagee.edit_text("denied_permission or the chat is already locked bruh")
             return
 
         if lock_type == "messages":
