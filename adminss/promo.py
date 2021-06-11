@@ -28,8 +28,8 @@ async def promotte(_, message):
     if not me_.can_promote_members:
         await message.edit("`Boss, You Don't Have Promote Permission!`")
         return
-        can_promo = True
-        if can_promo:
+    can_promo = True
+    if can_promo:
             try:
                 if message.reply_to_message:
                     user_id = message.reply_to_message.from_user.id
