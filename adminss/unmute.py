@@ -9,34 +9,50 @@ __**This command helps you to unmute a user in the chat**__
 ──「 **Usage** 」──
 -> `unmute`
 """
+unmute_permissions = ChatPermissions(
+    can_send_messages=True,
+    can_send_media_messages=True,
+    can_send_stickers=True,
+    can_send_animations=True,
+    can_send_games=True,
+    can_use_inline_bots=True,
+    can_add_web_page_previews=True,
+    can_send_polls=True,
+    can_change_info=False,
+    can_invite_users=True,
+    can_pin_messages=False,
+)
 
 @kingbot.on_message(filters.group & filters.command("unmute",vr.get("HNDLR")) & filters.user(Adminsettings))  
 async def unmute(client, message):
-    msg_id=message.message_id
-    chat_msg=message.text
-    username=None
-
-    if "@" in chat_msg:
-        index=chat_msg.index("@")     
-        chat_msg=str(chat_msg)
-        username=chat_msg[index+1:len(chat_msg)]
-    else:                   
-        username=message.reply_to_message.from_user.id
-
-    chat_id=message.chat.id
-    zuzu=await kingbot.get_chat_member(chat_id , "me")
-    can_unmute=zuzu.can_restrict_members
-    user_info=await kingbot.get_users(username)
-    if(can_unmute):      
-        await kingbot.restrict_chat_member(chat_id , username , message.chat.permissions)
-        if(user_info.username):
-            usercontact=user_info.username
-            reply_string="@"+usercontact+" has been released 😈"
-            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
+    if message.chat.type in ["group", "supergroup"]:
+        me_m =await client.get_me()
+        me_ = await message.chat.get_member(int(me_m.id))
+        if not me_.can_restrict_members:
+         await message.edit("`You Don't Have Permission! To mute`")
+         return
+        can_mute= True
+        if can_mute:
+            try:
+                if message.reply_to_message:
+                    user_id = message.reply_to_message.from_user.id
+                else:
+                    usr = await client.get_users(message.command[1])
+                    user_id = usr.id
+            except IndexError:
+                await message.edit_text("some ooga booga")
+                return
+            try:
+                await client.restrict_chat_member(
+                    chat_id=message.chat.id,
+                    user_id=user_id,
+                    permissions=unmute_permissions,
+                )
+                await message.delete()
+            except Exception as e:
+                await message.edit_text("`Error!`\n" f"**Log:** `{e}`")
+                return
         else:
-            usercontact=user_info.first_name
-            reply_string=usercontact+" has been released 😈"
-            await kingbot.edit_message_text(chat_id , msg_id , reply_string)
+            await message.edit_text("denied_permission")
     else:
-        reply_string="Noob,you can't unmute members 😂 !"
-        await kingbot.edit_message_text(chat_id , msg_id , reply_string )
+        await message.delete()
