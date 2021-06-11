@@ -8,6 +8,7 @@ beautifulsoup4>=4.9.3
 bidict==0.21.2
 bs4==0.0.1
 dnspython>=2.1.0
+emoji
 gpytranslate
 lottie>=0.6.6
 numpy>=1.20.1
