@@ -87,7 +87,7 @@ async def promotte(_, message):
                     await message.edit_text(f"**Log:** `{e}`")
                     return
 
-        else:
+    else:
             await message.edit_text("denied_permission")
             await asyncio.sleep(5)
             await message.delete()
