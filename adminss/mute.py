@@ -13,7 +13,7 @@ __**This command helps you to mute a user in the chat**__
 @kingbot.on_message(filters.command("mute",vr.get("HNDLR")) & filters.user(Adminsettings))  
 async def mute(client, message):
     if message.chat.type in ["group", "supergroup"]:
-        me_m =await client.get_me
+        me_m =await client.get_me()
         me_ = await message.chat.get_member(int(me_m.id))
         if not me_.can_restrict_members:
          await message.edit("`You Don't Have Permission! To mute`")
