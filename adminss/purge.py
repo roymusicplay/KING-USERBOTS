@@ -16,7 +16,7 @@ async def purge(client, message):
     message_ids = []
     purge_len = 0
     event = await message.edit_text("`Starting To Purge Messages!`")
-    me_m = client.get_me()
+    me_m =await client.get_me()
     if message.chat.type in ["supergroup", "channel"]:
         me_ = await message.chat.get_member(int(me_m.id))
         if not me_.can_delete_messages:
