@@ -42,12 +42,12 @@ async def lock(client , message):
         if lock_type == "all":
             try:
                 await client.set_chat_permissions(chat_id, ChatPermissions())
-                await edrep(message, text=("lock_all"))
+                await message.edit_text("locked all")
                 await asyncio.sleep(5)
                 await message.delete()
 
             except Exception as e:
-                await edrep(message, text=("denied_permission"))
+                await messagee.edit_text("denied_permission")
             return
 
         if lock_type == "messages":
@@ -116,7 +116,7 @@ async def lock(client , message):
                     can_pin_messages=pin,
                 ),
             )
-            await edrep(message, text=("lock_chat").format(perm))
+            await message.edit_text(f"locked chat {perm}")
             await asyncio.sleep(5)
             await message.delete()
         except Exception as e:
