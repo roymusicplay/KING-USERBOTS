@@ -11,7 +11,7 @@ __**This command helps you to block a user in pm**__
 """
 
 @kingbot.on_message(filters.command("block",vr.get("HNDLR")) & filters.user(Adminsettings))  
-async def block_user(_, message):
+async def block_user(client, message):
     if not message.chat.type == "private":
         await message.reply("Can't block the group LOL !")
     else:
