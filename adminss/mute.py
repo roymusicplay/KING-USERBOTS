@@ -11,41 +11,35 @@ __**This command helps you to mute a user in the chat**__
 """
 
 @kingbot.on_message(filters.command("mute",vr.get("HNDLR")) & filters.user(Adminsettings))  
-async def mute(_, message):
-    
-    msg_id=message.message_id
-    chat_id=message.chat.id
-    zuzu=await kingbot.get_chat_member(chat_id , "me")
-    can_mute=zuzu.can_restrict_members
-    chat_msg=message.text
-    
-    user_id=None
-    if "@" in chat_msg:
-        index=chat_msg.index("@")     
-        chat_msg=str(chat_msg)
-        user_id=chat_msg[index+1:len(chat_msg)]
-    else:                   
-        user_id=message.reply_to_message.from_user.id
-    user_info=await kingbot.get_users(user_id)
-    zizi= await kingbot.get_chat_member(chat_id , user_id)
-    can_user_ban=zizi.can_restrict_members
-
-    if(can_mute):
-        if(can_user_ban):
-            reply_string="Can't mute another admin. LOL !"
-            await kingbot.edit_message_text(chat_id , msg_id , reply_string )
-        else:            
-
-            await kingbot.restrict_chat_member(chat_id , user_id , ChatPermissions() , int(time()+86400))
-            if(user_info.username):
-                usercontact=user_info.username
-                reply_string="@"+usercontact+" has been muted for 24hrs !"
-                await kingbot.edit_message_text(chat_id , msg_id , reply_string)
-            else:
-                usercontact=user_info.first_name
-                reply_string=usercontact+" has been muted for 24hrs !"
-                await kingbot.edit_message_text(chat_id , msg_id , reply_string)
+async def mute(client, message):
+    if message.chat.type in ["group", "supergroup"]:
+        me_m =await client.get_me
+        me_ = await message.chat.get_member(int(me_m.id))
+        if not me_.can_restrict_members:
+         await message.edit("`You Don't Have Permission! To mute`")
+         return
+        can_mute= True
+        if can_mute:
+            try:
+                if message.reply_to_message:
+                    user_id = message.reply_to_message.from_user.id
+                else:
+                    usr = await client.get_users(message.command[1])
+                    user_id = usr.id
+            except IndexError:
+                await message.edit_text("some ooga booga")
+                return
+            try:
+                await client.restrict_chat_member(
+                    chat_id=message.chat.id,
+                    user_id=user_id,
+                    permissions=mute_permission,
+                )
+                await message.delete()
+            except Exception as e:
+                await message.edit_text("`Error!`\n" f"**Log:** `{e}`")
+                return
+        else:
+            await message.edit_text("denied_permission")
     else:
-        reply_string="Noob,you can't mute members 😂 !"
-        await kingbot.edit_message_text(chat_id , msg_id , reply_string )
-
+        await message.delete()
