@@ -130,7 +130,7 @@ async def gagahkah(_,message):
         return
     animation_interval = 0.8
     animation_ttl = range(0, 5)
-    await event.edit("wtf")
+    await message.edit("wtf")
     animation_chars = [
             "What",
             "What The",
