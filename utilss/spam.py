@@ -46,7 +46,7 @@ async def spam_stick(client, message):
                 await client.send_sticker(
                     message.chat.id,
                     sticker,
-                    reply_to_message_id=ReplyCheck(message),
+                    reply_to_message_id=message.id,
                 )
                 await asyncio.sleep(0.10)
 
