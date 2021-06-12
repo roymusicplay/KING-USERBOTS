@@ -16,6 +16,7 @@ __**This command helps you to disapprove someone**__
 @kingbot.on_message(~filters.user(Adminsettings) & filters.private & ~filters.bot & filters.incoming , group = 69)
 async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
+        print("sql is cringe here")
         return
   else:
     print("gotit")
