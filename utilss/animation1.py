@@ -136,7 +136,7 @@ async def gagahkah(_,message):
             "What The",
             "What The F",
             "What The F Brah",
-            "[**What The F Brah**](https://telegra.ph//file/f3b760e4a99340d331f9b.jpg)"
+            "[𝗪𝗵𝗮𝘁 𝗧𝗵𝗲 𝗙 𝗕𝗿𝗮𝗵](https://telegra.ph//file/f3b760e4a99340d331f9b.jpg)"
         ]
     for i in animation_ttl:
         	
