@@ -18,6 +18,7 @@ async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
         return
   else:
+    print(gotit)
     addwarns(message.chat.id)
     gw= getwarns(message.chat.id)
     if isinstance(gw , str):
