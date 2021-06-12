@@ -22,6 +22,7 @@ async def pm_chker(_ , message):
     print("gotit")
     addwarns(message.chat.id)
     gw= getwarns(message.chat.id)
+    teriu= message.from_user
     if isinstance(gw , str):
       sb= await setbot.get_me()
       un= sb.username
@@ -32,11 +33,11 @@ async def pm_chker(_ , message):
       keyboard= InlineKeyboardMarkup([  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
                         "Approve",
-                        callback_data=f"aprv_{str(message.from_user.id)}"
+                        callback_data=f"aprv_{str(teriu.id)}"
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Decline",
-                        callback_data=f"decine_{str(message.from_user.id)}"
+                        callback_data=f"decine_{str(teriu.id)}"
                     ),
                 ])
       await setbot.send_message(ow.id, f"{use.mention()} Has requested to contact you", reply_markup= keyboard )
@@ -54,11 +55,11 @@ async def pm_chker(_ , message):
       keyboard= InlineKeyboardMarkup([  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
                         "Approve",
-                        callback_data=f"aprv_{str(message.from_user.id)}"
+                        callback_data=f"aprv_{str(teriu.id)}"
                     ),
-                    InlineKeyboardButton(  # Opens a web URL
+                    InlineKeyboardButton(
                         "Decline",
-                        callback_data=f"decine_{str(message.from_user.id)}"
+                        callback_data=f"decine_{str(teriu.id)}"
                     ),
                 ])
       ow=await kingbot.get_me()
