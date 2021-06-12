@@ -13,7 +13,7 @@ __**This command helps you to disapprove someone**__
 -> `dapp`
 """
 
-@kingbot.on_message(~filters.user(Adminsettings) & filters.private & ~filters.bot & filters.incoming)
+@kingbot.on_message(~filters.user(Adminsettings) & filters.private & ~filters.bot & filters.incoming , group = 69)
 async def pm_chker(_ , message):
   if checkpermit(message.chat.id):
         return
