@@ -21,7 +21,7 @@ async def gooe_search(client, message):
     reply_msg += f"🔸Pɪɴɢ Tɪᴍᴇ: **{ping_time}ms\n**"
     reply_msg += f"🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: **{uptime}\n**"
     reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: **@KingUserBots\n**"
-    reply_msg += f"🔹Rᴇᴘᴏ: **[HERE](https://github.com/ToxicCybers/kinguserbot\n**"
+    reply_msg += f"🔹Rᴇᴘᴏ: **[HERE](https://github.com/ToxicCybers/kinguserbot)\n**"
     reply_msg += f"🔸Pʏᴛʜᴏɴ: **3.8\n\n**"
     reply_msg += f"🍹Sᴇʀᴠᴇʀꜱ Fᴜɴᴄᴛɪᴏɴɪɴɢ Nᴏʀᴍᴀʟ🍹"
     await client.send_photo(message.chat.id , Alive_pic , reply_msg)
