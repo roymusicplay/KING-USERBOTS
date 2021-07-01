@@ -14,14 +14,14 @@ Alive_pic = "https://telegra.ph/file/664686c15a83ccf26239b.mp4"
 async def gooe_search(client, message):
     start_time = time.time()
     uptime = (datetime.now() - START_TIME)
-    reply_msg = f"**MADE IN 🇮🇳 , MADE WITH 😻**"
+    reply_msg = f"**MADE KING🇮🇳 , OFFICIAL UUSERB**"
     reply_msg += "------------------\n\n"
     end_time = time.time()
     ping_time = round((end_time - start_time) * 1000, 3)
     reply_msg += f"🔸Pɪɴɢ Tɪᴍᴇ: **{ping_time}ms\n**"
     reply_msg += f"🔹Kɪɴɢ Uᴘᴛɪᴍᴇ: **{uptime}\n**"
-    reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: **@KingUserBots\n**"
-    reply_msg += f"🔹Rᴇᴘᴏ: **[HERE](https://github.com/ToxicCybers/kinguserbot)\n**"
+    reply_msg += f"🔸Sᴜᴘᴘᴏʀᴛ: **@KING_OFFICIAL_FORCE\n**"
+    reply_msg += f"🔹Rᴇᴘᴏ: **[HERE](https://github.com/TEAM-TANDAV-X/KING-USERBOTS)\n**"
     reply_msg += f"🔸Pʏᴛʜᴏɴ: **3.8\n\n**"
     reply_msg += f"🍹Sᴇʀᴠᴇʀꜱ Fᴜɴᴄᴛɪᴏɴɪɴɢ Nᴏʀᴍᴀʟ🍹"
     await client.send_photo(message.chat.id , Alive_pic , reply_msg)
