@@ -14,7 +14,7 @@ Alive_pic = "https://telegra.ph/file/664686c15a83ccf26239b.mp4"
 async def gooe_search(client, message):
     start_time = time.time()
     uptime = (datetime.now() - START_TIME)
-    reply_msg = f"**MADE KING🇮🇳 , OFFICIAL UUSERB**"
+    reply_msg = f"**MADE KING🇮🇳 , OFFICIAL USERBOT**"
     reply_msg += "------------------\n\n"
     end_time = time.time()
     ping_time = round((end_time - start_time) * 1000, 3)
