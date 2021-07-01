@@ -109,7 +109,7 @@ async def pmsg_gen(_ , inline_query):
   await inline_query.answer(
         results=[
             InlineQueryResultPhoto(
-                photo_url= "https://telegra.ph/file/7cb1a085a337c18fdfd42.jpg",
+                photo_url= "https://telegra.ph/file/84f9156ca6eb3dea84987.jpg",
                 title="pm",
                 caption=cptn,
                 reply_markup=keboard,
