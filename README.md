@@ -29,7 +29,6 @@ CO OWNER: SIDDHARTH
 
 #KING OFFICAL GROUP GROUP
        @KING_OFFICIAL_FORCE
-#OFFICIAL GROUP Click here to see our Op LING😎 [😎LINK😎](buttonurl:https://t.me/KING_OFFICIAL_FORCE)
 
 
 
