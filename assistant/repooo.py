@@ -20,7 +20,7 @@ async def ibnrp(_ , inline_query):
                   [  [
                         InlineKeyboardButton(
                             "🔥Repo",
-                            url= "https://github.com/ToxicCybers/kinguserbot"
+                            url= "https://github.com/TEAM-TANDAV-X/KING-USERBOTS"
                         )
                       ]])
   await inline_query.answer(
